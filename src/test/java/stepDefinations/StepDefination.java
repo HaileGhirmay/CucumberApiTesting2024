@@ -2,31 +2,24 @@ package stepDefinations;
 
 import static io.restassured.RestAssured.given;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 import static org.junit.Assert.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
-import pojo.AddPlace;
-import pojo.Location;
 import resources.APIResources;
 import resources.TestDataBuild;
 import resources.Utils;
 
 public class StepDefination extends Utils {
 	RequestSpecification res;
-	ResponseSpecification resspec;
+	ResponseSpecification resSpec;
 	Response response;
 	TestDataBuild data =new TestDataBuild();
 	static String place_id;
@@ -49,7 +42,7 @@ public void user_calls_with_http_request(String resource, String method) {
 		System.out.println(resourceAPI.getResource());
 		
 		
-		resspec =new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
+		resSpec =new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON).build();
 		
 		if(method.equalsIgnoreCase("POST"))
 		 response =res.when().post(resourceAPI.getResource());
